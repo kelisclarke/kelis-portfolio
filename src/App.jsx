@@ -1,803 +1,747 @@
-import React, { useState } from "react";
+import { useEffect, useMemo, useState } from 'react'
 
 const projects = [
   {
-    title: "CTCIP.org",
-    slug: "ctcip",
-    file: "ctcip_website.html",
-    type: "Web Design / UI/UX / WordPress",
-    mark: "CTCIP",
-    liveUrl: "https://ctcip.org",
-    role: "Wireframes, page structure, WordPress build, Beaver Builder edits, client revisions",
-    tools: "Figma, WordPress, Beaver Builder, custom CSS",
-    focus: "Full website design and build for a nonprofit organization, including adapting wireframes to platform limits and client needs.",
-    summary: "A website project for Children with Incarcerated Parents focused on organizing content, building key pages, and adapting Figma wireframes into a real WordPress site.",
-    goal: "Create a clearer web presence that made CTCIP's history, news, resources, programs, and collaborators easier to browse.",
-    part: "I started with Figma wireframes, then shifted into building and revising directly in WordPress once I understood what Beaver Builder could and could not do.",
-    process: [
-  ["Structuring the information", "I started by mapping the main pages and content types so the site would not feel like one long information dump. The goal was to separate history, news, resources, programs, and collaborators into sections that felt easier to scan and understand."],
-  ["Wireframing the page experience", "The Figma wireframes helped me think through hierarchy, navigation, hero sections, card layouts, article sections, and program groupings before building anything live."],
-  ["Adapting inside WordPress", "The biggest learning curve was understanding what Beaver Builder could and could not do. Instead of treating the wireframes as fixed mockups, I used them as a guide while making practical layout decisions directly inside the site."],
-],
-    deep: {
-      title: "From Figma plan to WordPress reality.",
-       text: "This project taught me that UX/UI work does not always move perfectly from Figma to final product. The early wireframes were useful for planning structure and hierarchy, but the actual design had to evolve inside WordPress. I had to think less like someone simply recreating a mockup and more like someone building a usable site within real platform constraints, client revisions, and content needs.",
-      items: ["Home wireframe", "About page wireframe", "CIP in the News wireframe", "Resources / Programs wireframe"],
-       },
+    id: '01',
+    title: 'SeeMe',
+    type: 'INTERACTIVE MEDIA / PRODUCT DESIGN',
+    image: '/assets/seeme-cover.png',
+    blurb: 'An interactive media discovery platform that turns browsing into part of the experience.'
   },
   {
-    title: "Food Swipe App",
-    slug: "food-swipe",
-    file: "food_swipe_app.fig",
-    type: "Mobile Onboarding / Product UX",
-    mark: "🍽️",
-    role: "Onboarding UX, mobile UI design, preference flow, personalization setup, Figma screen execution",
-    tools: "Figma, mobile UI design, onboarding strategy, interaction design, visual hierarchy",
-    focus: "Designing a quick, visual onboarding flow that makes food recommendations feel personalized from the start",
-    summary: "A group mobile app concept built around the problem of deciding what to eat. My main responsibility was designing and executing the onboarding experience, which introduced the app, collected user preferences, and set up the personalized swipe flow.",
-    goal: "Design an onboarding flow that helped users enter the product quickly while still collecting enough preference data to make the food recommendations feel relevant.",
-    part: "The overall app concept was developed in a group, but I owned the onboarding screens. I designed the setup flow from the landing screen through account creation, dietary preferences, cravings, cooking vs. delivery, effort level, budget, dealbreakers, and the final ready-to-swipe screen.",
-    process: [
-  ["Defining the onboarding purpose", "I treated onboarding as the bridge between the concept and the actual product experience. It needed to explain the app quickly, collect useful information, and make the user feel like the app was already adapting to them."],
-  ["Breaking setup into simple choices", "Instead of relying on long forms, I separated the setup into quick decision points: diet, cravings, cook vs. order, effort level, budget, and dealbreakers. This made the experience feel faster and more mobile-friendly."],
-  ["Designing for a Gen Z audience", "The visual direction uses a bright green palette, rounded cards, food imagery, casual language, and Apple-style emojis to make the onboarding feel familiar, playful, and easy to move through without losing clarity."],
-],
-deep: {
-  title: "Final onboarding flow.",
-  text: "Each screen is designed to reduce friction, collect useful preference data, and make the app feel personalized before the user reaches the swipe feature.",
-  items: ["Landing + account", "Diet preferences", "Food interests", "Effort + budget", "Dealbreakers + finish"],
-},
-},
-{
-  title: "QKit",
-  slug: "qkit",
-  file: "qkit_identity.ai",
-  type: "Branding / Logo System",
-  mark: "QK",
-  logo: "/images/qkit-2.1",
-  role: "Logo development, color exploration, favicon testing, small-scale identity refinement",
-  tools: "Illustrator, Figma, logo design, visual identity testing",
-  focus: "A compact Q/K mark designed to work as both a logo and favicon",
-  summary: "A visual identity project built around the interaction between a Q and K. The goal was to create a compact mark that could feel branded, recognizable, and still readable at small digital sizes.",
-  goal: "Create a QKit logo system that could work as a full brand mark, a favicon, and a small digital identifier without losing the relationship between the Q and K.",
-  part: "I explored how the K could sit inside the Q and act as part of the mark instead of feeling like a separate letter. The final set includes draft, black, and color versions to test how the identity holds up across different use cases.",
-  process: [
-    ["Symbol exploration", "I tested how the K could interact with the Q while still keeping the mark readable and balanced."],
-    ["Small-size testing", "Because the mark needed to work as a favicon, I paid attention to whether the shape stayed recognizable when scaled down."],
-    ["Color + final variations", "I explored black-and-white and blue/yellow directions to see how the logo worked in both simplified and branded contexts."],
-  ],
-},
-  {
-    title: "Bandcamp Digital Audit",
-    slug: "bandcamp",
-    file: "bandcamp_audit.pdf",
-    type: "Platform Audit / Content Strategy",
-    mark: "♫",
-    role: "Digital inventory, platform audit, competitor comparison, strategic recommendations",
-    tools: "Research, content strategy, competitive analysis, presentation writing",
-    focus: "Helping Bandcamp feel more culturally active without losing its independent identity",
-    summary: "A digital media audit analyzing Bandcamp's website, social presence, search visibility, competitors, and opportunities for stronger artist/community storytelling.",
-    goal: "Understand why Bandcamp is respected in indie music circles but less culturally visible than competitors like Spotify and SoundCloud, then build recommendations that connect the platform to artist growth, discovery, and culture.",
-    part: "I broke down Bandcamp's digital presence across its website, social media, search visibility, competitor positioning, key insights, and strategic recommendations. Since this project is mostly writing and strategy, the case study focuses on the logic behind the recommendations instead of visual assets.",
-    process: [
-      ["Digital inventory", "I reviewed Bandcamp's website, social channels, and search presence to identify what was working and where the platform felt outdated, quiet, or unclear."],
-      ["Deep-dive audit", "I analyzed the website experience, mobile behavior, social media tone, and lack of short-form presence to understand why Bandcamp feels more functional than culturally active."],
-      ["Competitor comparison", "I compared Bandcamp with Spotify and SoundCloud, focusing on personalization, discovery, social presence, artist identity, and cultural relevance."],
-    ],
-    deep: {
-      textOnly: true,
-      title: "What the audit showed.",
-      text: "The main issue was not that Bandcamp lacks purpose. The issue is that its digital presence does not fully communicate that purpose in a way that feels current, social, or culturally memorable.",
-      items: [
-        "Bandcamp works well as a direct-to-fan sales tool, but that can make it feel more like a tip jar than a real growth platform for artists.",
-        "The website is functional and mission-driven, but it feels static and text-heavy compared to platforms that push discovery, personalization, and repeat engagement.",
-        "The social presence exists, but it does not create much conversation. The content supports artists, but it rarely gives people a reason to share, remix, comment, or follow a larger story.",
-        "Bandcamp lacks a cultural anchor. Spotify has Wrapped and personalization. SoundCloud has a strong discovery identity. Bandcamp needs a clearer cultural reason for people to talk about it."
-      ],
-    },
-    recommendations: [
-      {
-        title: "Build a Poster Artist Program",
-        why: "Bandcamp needs recognizable proof that artists can grow on the platform, not just receive support from fans who already know them.",
-        strategy: "Spotlight one emerging artist each quarter with homepage placement, mini-doc content, editorial interviews, playlist features, and social storytelling.",
-        payoff: "This gives Bandcamp a recurring cultural anchor and helps audiences associate the platform with discovering new movements early."
-      },
-      {
-        title: "Use short-form video as artist storytelling",
-        why: "Music discovery now happens heavily through short-form platforms. Bandcamp avoiding TikTok and Shorts makes it feel disconnected from where younger listeners find music.",
-        strategy: "Create repeatable formats like artist origin clips, studio moments, fan reactions, Bandcamp finds of the week, and behind-the-release videos.",
-        payoff: "The goal is not to chase random trends. It is to make Bandcamp's artist-first identity visible in the spaces where music culture already moves."
-      },
-      {
-        title: "Launch community challenges and contests",
-        why: "Bandcamp needs more reasons for users to interact with the brand instead of only visiting when they already plan to buy something.",
-        strategy: "Run song challenges, remix prompts, themed compilation contests, or genre-based discovery weeks where winners receive homepage placement or merch support.",
-        payoff: "This turns Bandcamp from a passive storefront into a place where artists and fans can participate in a shared music moment."
-      },
-      {
-        title: "Create college radio partnerships",
-        why: "College radio audiences already overlap with indie, alternative, underground, and discovery-driven music communities.",
-        strategy: "Partner with stations like WHUS and other student-led radio programs to create Bandcamp-curated shows, live sessions, playlist swaps, and artist spotlights.",
-        payoff: "This builds awareness with a younger audience while keeping Bandcamp connected to independent music culture instead of forcing a generic mainstream strategy."
-      },
-      {
-        title: "Test global and fandom-driven collaborations",
-        why: "Bandcamp's direct-to-fan model could connect with fandoms that already understand buying, collecting, supporting artists, and physical/digital releases.",
-        strategy: "Explore partnerships with global scenes, including K-pop or other fandom-heavy markets, through exclusive digital releases, merch bundles, or artist-curated storefronts.",
-        payoff: "This gives Bandcamp a path toward growth without abandoning its artist-first sales model."
-      }
-    ],
+    id: '02',
+    title: 'CTCIP',
+    type: 'WEB DESIGN / REDESIGN',
+    image: '/assets/ctcip-cover.png',
+    blurb: 'A real-world website redesign focused on clearer structure, visual hierarchy, and implementation.'
   },
   {
-    title: "Behind the Bun",
-    slug: "behind-the-bun",
-    file: "behind_the_bun.deck",
-    type: "Campaign Strategy / KPI Framework",
-    mark: "🍔",
-    role: "Content strategy, brand culture study, consumer behavior analysis, KPI framework, campaign measurement",
-    tools: "Content strategy, brand culture research, consumer behavior, social media analysis, KPI planning",
-    focus: "Connecting brand culture and audience behavior to measurable campaign goals",
-    summary: "A Chick-fil-A campaign concept about employee culture and behind-the-scenes content. My focus was the strategic side: brand culture, consumer behavior, content direction, and how the campaign would be measured beyond surface-level engagement.",
-    goal: "Make employee culture feel more visible and personal while giving the campaign a clear way to track whether it actually built awareness, engagement, and community connection.",
-    part: "The overall campaign was a group concept, but my responsibility leaned into the strategy behind it. I focused on how Chick-fil-A’s brand culture could be shown more personally, how audiences might respond to employee-centered content, and how the campaign could be measured beyond views or likes.",
-    process: [
-      ["Brand culture study", "I looked at how Chick-fil-A already presents its culture and where the content still feels mostly external-facing instead of personal or behind-the-scenes."],
-      ["Consumer behavior angle", "I thought about why audiences respond to more human brand content, especially when it shows real people, workplace culture, and moments that feel less polished."],
-      ["KPI + measurement logic", "I connected the content strategy to metrics that could show whether the campaign was building awareness, engagement, community response, and stronger brand perception."],
-    ],
-    deep: {
-      textOnly: true,
-      title: "What the KPI framework needed to prove.",
-      text: "Behind the Bun was not just about making Chick-fil-A look more personal. The strategy needed to show whether behind-the-scenes employee content could actually deepen audience connection and make the brand feel more human.",
-      items: [
-        "The campaign needed to measure more than views because a high view count does not automatically mean people cared about the content.",
-        "Employee-centered storytelling had to be judged by whether it made the brand feel more personal, not just whether the posts looked polished.",
-        "The KPI framework connected the creative direction to audience behavior, including saves, shares, comments, sentiment, and repeat engagement.",
-        "The strongest measurement approach was to track both short-term content performance and longer-term changes in how audiences responded to the brand culture."
-      ],
-    },
-    recommendations: [
-      {
-        title: "Awareness metrics",
-        why: "The campaign first needs to prove that employee-centered content is reaching enough people to matter.",
-        strategy: "Track impressions, reach, video views, profile visits, and follower growth across campaign posts.",
-        payoff: "This shows whether Behind the Bun is expanding visibility beyond people who already interact with Chick-fil-A content."
-      },
-      {
-        title: "Engagement quality",
-        why: "Likes alone are too shallow. A campaign about culture should measure whether people are actually interacting with the story.",
-        strategy: "Track comments, shares, saves, watch time, completion rate, and replies to prompts or questions.",
-        payoff: "This proves whether the content is strong enough for people to respond to, save, or send to someone else."
-      },
-      {
-        title: "Community response",
-        why: "The whole point is to make the brand feel more personal, so the comment section and audience tone matter.",
-        strategy: "Monitor comment sentiment, repeated themes, employee mentions, audience questions, and user-generated responses.",
-        payoff: "This helps show whether people are reacting to the human side of the campaign instead of treating it like normal branded content."
-      },
-      {
-        title: "Employee storytelling performance",
-        why: "Since the campaign centers workers, the brand needs to know which types of employee stories perform best.",
-        strategy: "Compare performance across day-in-the-life videos, team member spotlights, behind-the-scenes clips, and workplace culture posts.",
-        payoff: "This gives the brand direction for which content formats should continue after the campaign ends."
-      },
-      {
-        title: "Brand lift indicators",
-        why: "Behind the Bun should support a bigger brand goal: making Chick-fil-A feel warmer, more transparent, and more community-driven.",
-        strategy: "Use pre/post social listening, survey questions, sentiment tracking, and changes in branded search or profile engagement.",
-        payoff: "This connects the campaign to perception change instead of treating it like a one-off content series."
-      }
-    ],
+    id: '03',
+    title: 'Bandcamp Brand Audit',
+    type: 'BRAND STRATEGY / RESEARCH',
+    image: '/assets/bandcamp-logo.png',
+    imageFit: 'contain',
+    blurb: 'A brand audit exploring ways Bandcamp could strengthen visibility, positioning, and audience reach.'
   },
-];
+]
 
-const skillCategories = [
-  { title: "Design + Web", items: ["UI/UX", "Web design", "Figma", "WordPress", "Custom CSS", "HTML/CSS", "Framer"] },
-  { title: "Creative + Strategy", items: ["Brand identity", "Content strategy", "Presentation design", "Consumer behavior", "Creative direction"] },
-  { title: "Tools + Platforms", items: ["Photoshop", "Illustrator", "Premiere Pro", "Audition", "Cinema 4D", "AI media tools"] },
-];
+const menuItems = [
+  { key: 'work', label: 'WORK' },
+  { key: 'about', label: 'ABOUT' },
+  { key: 'resume', label: 'RESUME' },
+  { key: 'contact', label: 'CONTACT' },
+]
 
-const experience = [
-  ["Student UI/UX Designer", "UConn Internal Insights & Innovation", "May 2025 to Present", "Design Figma layouts, build WordPress pages, revise site structure, and support responsive web projects."],
-  ["Media Cage Employee", "University of Connecticut, Stamford", "January 2024 to May 2024", "Prepared, checked out, inspected, and tracked media equipment for students and faculty."],
-];
-const CONTACT_EMAIL = "kelisclarke1@yahoo.com";
+export default function App() {
+  const [screen, setScreen] = useState(() => {
+    const requested = new URLSearchParams(window.location.search).get('screen')
+    return ['menu', 'work', 'about', 'resume', 'contact', 'seeme', 'ctcip', 'bandcamp'].includes(requested) ? requested : 'menu'
+  })
+  const [menuIndex, setMenuIndex] = useState(0)
+  const [projectIndex, setProjectIndex] = useState(0)
 
-const foodSwipeScreens = [
-  {
-    title: "Landing screen",
-    src: "/images/food-swipe-1.png",
-    note: "Introduces the app quickly with the tinder x food concept and a bold food visual.",
-  },
-  {
-    title: "Create account",
-    src: "/images/food-swipe-2.png",
-    note: "Keeps account creation simple so users can get into the preference flow fast.",
-  },
-  {
-    title: "Diet preferences",
-    src: "/images/food-swipe-3.png",
-    note: "Collects basic dietary needs before recommendations begin.",
-  },
-  {
-    title: "Food interests",
-    src: "/images/food-swipe-4.png",
-    note: "Uses visual food cards so the setup feels more like choosing than filling out a form.",
-  },
-  {
-    title: "Cook or order",
-    src: "/images/food-swipe-5.png",
-    note: "Asks whether the user wants to cook, order delivery, or stay flexible.",
-  },
-  {
-    title: "Effort level",
-    src: "/images/food-swipe-6.png",
-    note: "Makes recommendations more realistic based on how much time the user wants to spend.",
-  },
-  {
-    title: "Budget",
-    src: "/images/food-swipe-7.png",
-    note: "Adds budget context so suggestions fit the user’s actual situation.",
-  },
-  {
-    title: "Dealbreakers",
-    src: "/images/food-swipe-8.png",
-    note: "Lets users remove ingredients or foods they already know they dislike.",
-  },
-  {
-    title: "Ready to swipe",
-    src: "/images/food-swipe-9.png",
-    note: "Ends the flow with a clear start point so users know setup is complete.",
-  },
-];
+  const activeMenu = menuItems[menuIndex]
+  const activeProject = projects[projectIndex]
+  const openActiveProject = () => {
+    if (activeProject.id === '01') setScreen('seeme')
+    if (activeProject.id === '02') setScreen('ctcip')
+    if (activeProject.id === '03') setScreen('bandcamp')
+  }
 
-const qkitAssets = [
-  {
-    title: "Draft mark",
-    src: "/images/qkit-draft.png",
-    note: "The early black-and-white version testing the Q and K interaction in its simplest form.",
-  },
-  {
-    title: "Black polished mark",
-    src: "/images/qkit-1.png",
-    note: "A more polished black version that keeps the dimensional feel while removing the color system.",
-  },
-  {
-    title: "Color direction 1",
-    src: "/images/qkit-2.png",
-    note: "A blue and yellow version testing how the mark could feel as a fuller brand identity.",
-  },
-  {
-    title: "Color direction 2",
-    src: "/images/qkit-2.1.png",
-    note: "A second color variation with a slightly different balance between the ring, K, and yellow accent.",
-  },
-];
+  useEffect(() => {
+    document.body.classList.toggle('case-study-active', screen === 'seeme' || screen === 'ctcip' || screen === 'bandcamp')
+    return () => document.body.classList.remove('case-study-active')
+  }, [screen])
 
-const ctcipWireframes = [
-  {
-    title: "Home wireframe",
-    src: "/images/ctcip-home.png",
-  },
-  {
-    title: "About page wireframe",
-    src: "/images/ctcip-about.png",
-  },
-  {
-    title: "CIP in the News wireframe",
-    src: "/images/ctcip-news.png",
-  },
-  {
-    title: "Resources / Programs wireframe",
-    src: "/images/ctcip-programs2.png",
-  },
-];
-function Controls() {
-  return <div className="flex gap-1"><span className="win-btn">_</span><span className="win-btn">□</span><span className="win-btn">×</span></div>;
-}
+  useEffect(() => {
+    const url = new URL(window.location.href)
+    if (screen === 'menu') url.searchParams.delete('screen')
+    else url.searchParams.set('screen', screen)
+    window.history.replaceState({ screen }, '', `${url.pathname}${url.search}${url.hash}`)
+  }, [screen])
 
-function Window({ title, children, className = "" }) {
-  return (
-    <div className={`border border-slate-400 bg-slate-400 p-[2px] shadow-[0_0_35px_rgba(99,102,241,.25)] ${className}`}>
-      <div className="flex items-center justify-between border border-slate-950 bg-gradient-to-r from-indigo-950 via-[#26145c] to-slate-300 px-2 py-1 text-xs font-bold text-white">
-        <span className="truncate">▣ {title}</span><Controls />
-      </div>
-      <div className="border-x border-b border-slate-950 bg-[#080b18] p-6">{children}</div>
-    </div>
-  );
-}
-
-function Tag({ children }) {
-  return (
-    <span className="border border-indigo-300/30 bg-indigo-400/10 px-3 py-1 text-xs text-indigo-100 transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:bg-indigo-400/20 hover:text-white">
-      {children}
-    </span>
-  );
-}
-
-function Button({ children, href, onClick, primary }) {
-  const cls = primary
-    ? "inline-flex gap-5 border border-indigo-100 bg-indigo-400 px-5 py-3 text-sm font-extrabold text-[#080b18] transition duration-200 hover:-translate-y-0.5 hover:bg-indigo-300 hover:shadow-[4px_4px_0_rgba(255,255,255,.22)] focus:outline-none focus:ring-2 focus:ring-indigo-200"
-    : "inline-flex gap-5 border border-slate-400 bg-black/20 px-5 py-3 text-sm font-extrabold text-white transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:bg-indigo-400/10 hover:text-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-300";
-  return href ? <a className={cls} href={href}>{children} →</a> : <button className={cls} onClick={onClick}>{children} →</button>;
-}
-function EmailCopyButton({ children = "Copy email", primary }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(CONTACT_EMAIL);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
-    } catch {
-      window.location.href = `mailto:${CONTACT_EMAIL}`;
+  useEffect(() => {
+    const onPopState = () => {
+      const requested = new URLSearchParams(window.location.search).get('screen')
+      setScreen(['menu', 'work', 'about', 'resume', 'contact', 'seeme', 'ctcip', 'bandcamp'].includes(requested) ? requested : 'menu')
     }
-  };
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
 
-  const cls = primary
-    ? "inline-flex gap-5 border border-indigo-100 bg-indigo-400 px-5 py-3 text-sm font-extrabold text-[#080b18] transition duration-200 hover:-translate-y-0.5 hover:bg-indigo-300 hover:shadow-[4px_4px_0_rgba(255,255,255,.22)] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-200"
-    : "inline-flex gap-5 border border-slate-400 bg-black/20 px-5 py-3 text-sm font-extrabold text-white transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:bg-indigo-400/10 hover:text-indigo-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300";
+  useEffect(() => {
+    if (!['seeme', 'ctcip', 'bandcamp'].includes(screen)) return
+    let observer
+    const frame = requestAnimationFrame(() => {
+      const sections = document.querySelectorAll('.seeme-case .notebook-spread, .ctcip-case .ctcip-sheet, .bandcamp-case .bandcamp-sheet')
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view')
+            observer?.unobserve(entry.target)
+          }
+        })
+      }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' })
+      sections.forEach((section) => observer.observe(section))
+    })
+    return () => { cancelAnimationFrame(frame); observer?.disconnect() }
+  }, [screen])
+
+  const menuVisual = useMemo(() => {
+    if (activeMenu.key === 'work') return { image: activeProject.image, title: 'SELECTED WORK', small: 'PROJECT ARCHIVE' }
+    if (activeMenu.key === 'about') return { color: '#77786f', title: 'ABOUT ME', small: 'PROFILE / NOTES' }
+    if (activeMenu.key === 'resume') return { color: '#77786f', title: 'RESUME', small: 'EXPERIENCE / SKILLS' }
+    if (activeMenu.key === 'contact') return { color: '#77786f', title: 'CONTACT', small: 'EMAIL / LINKS' }
+    return { color: '#77786f', title: 'CONTACT', small: 'EMAIL / LINKS' }
+  }, [activeMenu, activeProject])
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (screen === 'menu') {
+        if (e.key === 'ArrowDown') setMenuIndex((i) => (i + 1) % menuItems.length)
+        if (e.key === 'ArrowUp') setMenuIndex((i) => (i - 1 + menuItems.length) % menuItems.length)
+        if (e.key === 'Enter' || e.key === 'ArrowRight') setScreen(activeMenu.key)
+      } else if (screen === 'work') {
+        if (e.key === 'Escape' || e.key === 'Backspace') setScreen('menu')
+      } else if (e.key === 'Escape' || e.key === 'Backspace') {
+        setScreen('menu')
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [screen, activeMenu])
+
+  if (screen === 'seeme') {
+    return <SeeMeCaseStudy onBack={() => setScreen('work')} />
+  }
+
+  if (screen === 'ctcip') {
+    return <CTCIPCaseStudy onBack={() => setScreen('work')} />
+  }
+
+  if (screen === 'bandcamp') {
+    return <BandcampCaseStudy onBack={() => setScreen('work')} />
+  }
+
+  if (screen === 'work') {
+    return <WorkScreen projectIndex={projectIndex} setProjectIndex={setProjectIndex} onBack={() => setScreen('menu')} onOpenProject={(project) => { if (project.id === '01') setScreen('seeme'); if (project.id === '02') setScreen('ctcip'); if (project.id === '03') setScreen('bandcamp') }} />
+  }
+
+  if (screen !== 'menu') {
+    return <PaperScreen kind={screen} onBack={() => setScreen('menu')} />
+  }
 
   return (
-    <button onClick={handleCopy} className={cls} type="button">
-      {copied ? "Email copied" : children} →
-    </button>
-  );
-}
+    <main className="skate-shell main-menu-screen home-collage">
+      <Texture />
 
-function ProjectCard({ project, onOpen }) {
-  return (
-    <button
-      onClick={onOpen}
-      className="group block text-left text-white transition focus:outline-none focus:ring-2 focus:ring-indigo-300"
-    >
-      <Window
-        title={project.title}
-        className="h-full transition duration-300 group-hover:-translate-y-1 group-hover:border-indigo-300 group-hover:shadow-[0_0_42px_rgba(129,140,248,.28)]"
-      >
-        <div className="relative mb-4 min-h-52 overflow-hidden bg-black p-4 transition duration-300 group-hover:bg-slate-950">
-          <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-indigo-400/50 blur-2xl transition duration-300 group-hover:scale-125 group-hover:bg-indigo-300/70" />
-          <p className="relative text-[10px] uppercase tracking-[.2em] text-indigo-100/70">
-            {project.file}
-          </p>
-          <div className="absolute right-4 top-12 text-5xl font-black text-indigo-100/60 transition duration-300 group-hover:scale-110 group-hover:text-indigo-100">
-            {project.mark}
-          </div>
-          <div className="absolute bottom-4 left-4 right-4">
-            <p className="text-sm italic text-indigo-200">{project.kicker}</p>
-            <h3 className="text-3xl font-bold leading-none">{project.title}</h3>
-          </div>
-        </div>
+      <img className="home-top-ink texture-ink" src="/assets/brush-ink-dry.png" alt="" />
+      <img className="home-bottom-ink texture-ink" src="/assets/brush-ink-wet.png" alt="" />
+      <div className="home-paper-band" />
 
-        <p className="text-sm leading-6 text-slate-300">{project.summary}</p>
-        <p className="mt-4 translate-y-2 text-xs font-bold uppercase tracking-[.2em] text-indigo-300 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-          Open project →
-        </p>
-      </Window>
-    </button>
-  );
-}
+      <img className="bottom-left-smudge" src="/assets/bottom-left-smudge.png" alt="" />
+      <img className="ambient-photo ambient-pond" src="/assets/pond-reflection.png" alt="" />
+      <div className="edge-building" />
+      <img className="edge-scrap edge-scrap-a" src="/assets/brush-ink-wet.png" alt="" />
+      <img className="edge-scrap edge-scrap-b" src="/assets/brush-ink-dry.png" alt="" />
+      <img className="ink-smudge ink-smudge-a" src="/assets/brush-ink-dry.png" alt="" />
+      <img className="ink-smudge ink-smudge-b" src="/assets/brush-ink-wet.png" alt="" />
 
-function Home({ openProject }) {
-  return (
-    <>
-      <section className="grid gap-10 border-b border-white/10 px-5 py-16 lg:grid-cols-[.95fr_.85fr] lg:items-center lg:px-12">
-        <div>
-          <p className="mb-5 inline-block border border-indigo-300/30 bg-indigo-400/10 px-3 py-1 text-xs font-bold uppercase tracking-[.25em] text-indigo-100">digital media designer + creative strategist</p>
-          <h1 className="max-w-[12ch] text-[clamp(3.4rem,9vw,7.5rem)] font-black leading-[.95] tracking-[-.05em] text-indigo-100">Digital work that feels like you<span className="text-indigo-400">.</span></h1>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">I’m Kelis Clarke, a digital media designer and creative strategist working across web design, UX/UI, branding, and content strategy. My work usually starts with structure: what the user needs, what the brand is trying to say, and how the experience should move. From there, I build digital work that still has a clear point of view.</p>
-          <div className="mt-10 flex flex-wrap gap-3"><Button href="#work" primary>See the work</Button><EmailCopyButton>Copy email</EmailCopyButton></div>
-        </div>
-        <Window
-  title="quick_notes.txt"
-  className="w-full max-w-[430px] self-center justify-self-center lg:-translate-y-8"
->
-  <p className="font-mono text-sm leading-8 text-slate-300">
-    Strategy first.
-    <br />
-    Design with intent.
-    <br />
-    Make it feel like something.
-    <br />
-    <span className="text-indigo-300">▌</span>
-  </p>
-</Window>
+      <section className="home-name-card">
+        <span className="home-mark">M</span>
+        <strong>KELIS CLARKE</strong>
+        <small>DIGITAL MEDIA &amp; DESIGN</small>
+        <i>v1.0</i>
       </section>
 
-      <section id="work" className="border-b border-white/10 px-5 py-14 lg:px-12">
-        <h2 className="mb-4 text-3xl font-bold text-indigo-100">Selected Work</h2>
-        <p className="mb-8 max-w-3xl leading-7 text-slate-300">A mix of real web work, app/product thinking, branding, platform strategy, and campaign measurement.</p>
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-5">{projects.map((p) => <ProjectCard key={p.slug} project={p} onOpen={() => openProject(p.slug)} />)}</div>
+      <section className="home-menu" aria-label="Portfolio navigation">
+        {menuItems.map((item, index) => (
+          <button
+            key={item.key}
+            className={`home-menu-item ${index === menuIndex ? 'is-selected' : ''}`}
+            onMouseEnter={() => setMenuIndex(index)}
+            onClick={() => { setMenuIndex(index); setScreen(item.key) }}
+          >
+            {index === menuIndex && <img className="menu-brush" src="/assets/brush-b.png" alt="" />}
+            <span className="home-arrow" aria-hidden="true">➜</span>
+            <span className="home-num">{String(index + 1).padStart(2, '0')}</span>
+            <strong>{item.label}</strong>
+          </button>
+        ))}
       </section>
 
-      <section id="about" className="grid gap-5 border-b border-white/10 px-5 py-14 lg:grid-cols-2 lg:px-12">
-        <Window title="about_me.exe"><h2 className="mb-5 text-3xl font-bold">About ▌</h2><p className="leading-7 text-slate-300">My work sits somewhere between design, culture, and digital behavior. I’m trained mostly in UI/UX and web design, but I’m also drawn to branding, social media, entertainment, and creative strategy.</p></Window>
-        <Window title="my_toolbox.sys"><h2 className="mb-6 text-3xl font-bold">My Toolbox ▌</h2><div className="space-y-6">{skillCategories.map((cat) => <div key={cat.title}><h3 className="mb-3 font-bold text-indigo-300">{cat.title}</h3><div className="flex flex-wrap gap-2">{cat.items.map((i) => <Tag key={i}>{i}</Tag>)}</div></div>)}</div></Window>
-      </section>
-
-      <section id="experience" className="grid gap-5 border-b border-white/10 px-5 py-14 lg:grid-cols-2 lg:px-12">{experience.map(([t,c,d,desc]) => <Window key={t} title={`${t}.txt`}><p className="text-indigo-200">{c}</p><h2 className="text-2xl font-bold">{t}</h2><p className="my-3 text-sm text-indigo-100">{d}</p><p className="leading-7 text-slate-300">{desc}</p></Window>)}</section>
-
-      <section id="contact" className="px-5 py-14 lg:px-12"><Window title="new_message.eml"><h2 className="text-[clamp(2.4rem,5vw,4.6rem)] font-black leading-tight">Let’s make something cool together!.</h2><p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">Based in Bridgeport, CT. Open to web design, branding, content strategy, UI/UX, social media, and creative direction opportunities.</p><p className="mt-4 font-mono text-sm text-indigo-200">
-  {CONTACT_EMAIL}
-</p><div className="mt-8 flex flex-wrap gap-3"><EmailCopyButton primary>Email me</EmailCopyButton><Button href="https://linkedin.com/in/kelis-c">LinkedIn</Button></div></Window></section>
-    </>
-  );
-}
-
-function Info({ label, value }) {
-  return (
-    <div className="border border-indigo-300/10 bg-white/[.03] p-4 transition duration-200 hover:-translate-y-0.5 hover:border-indigo-300/40 hover:bg-white/[.06] hover:shadow-[0_0_24px_rgba(129,140,248,.16)]">
-      <p className="mb-1 text-[10px] font-bold uppercase tracking-[.2em] text-indigo-300">
-        {label}
-      </p>
-      <p className="text-sm leading-6 text-slate-200">{value}</p>
-    </div>
-  );
-}
-
-function Placeholder({ label }) {
-  return <div className="min-h-48 border border-indigo-300/10 bg-black p-4"><p className="text-[10px] uppercase tracking-[.2em] text-indigo-200/70">placeholder</p><p className="mt-20 text-xl font-bold">{label}</p></div>;
-}
-function QKitGallery() {
-  return (
-    <div className="mx-auto grid max-w-5xl gap-5 md:grid-cols-2">
-      {qkitAssets.map((asset) => (
-        <div
-          key={asset.title}
-          className="border border-indigo-300/10 bg-white/[.03] p-4"
-        >
-          <div className="mb-4 grid min-h-72 place-items-center overflow-hidden border border-slate-700 bg-white p-4">
-            <img
-              src={asset.src}
-              alt={asset.title}
-              className="max-h-72 w-full object-contain"
-            />
-          </div>
-          <h3 className="mb-2 text-lg font-bold text-white">{asset.title}</h3>
-          <p className="text-sm leading-7 text-slate-300">{asset.note}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function PhoneSwiper({ screens }) {
-  const [current, setCurrent] = useState(0);
-  const screen = screens[current];
-
-  const goBack = () => {
-    setCurrent((current - 1 + screens.length) % screens.length);
-  };
-
-  const goNext = () => {
-    setCurrent((current + 1) % screens.length);
-  };
-
-  return (
-    <div className="grid gap-10 lg:grid-cols-[430px_1fr] lg:items-center">
-      <div className="mx-auto w-full max-w-[370px]">
-        <div className="rounded-[2.5rem] border border-indigo-200/40 bg-black p-3 shadow-[0_0_40px_rgba(99,102,241,.35)]">
-          <div className="overflow-hidden rounded-[2rem] bg-slate-950">
-            <img
-              src={screen.src}
-              alt={screen.title}
-              className="h-[720px] w-full object-cover object-top"
-            />
-          </div>
-        </div>
-
-        <div className="mt-5 flex items-center justify-between gap-3">
-          <button
-            onClick={goBack}
-            className="border border-indigo-300/30 bg-indigo-400/10 px-4 py-2 text-sm font-bold text-indigo-100 transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:bg-indigo-400/20 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-300"
-          >
-            ← Back
-          </button>
-
-          <p className="text-sm text-slate-300">
-            {current + 1} / {screens.length}
-          </p>
-
-          <button
-            onClick={goNext}
-            className="border border-indigo-300/30 bg-indigo-400/10 px-4 py-2 text-sm font-bold text-indigo-100 transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:bg-indigo-400/20 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-300"
-          >
-            Next →
-          </button>
-        </div>
-
-        <div className="mt-4 flex justify-center gap-2">
-          {screens.map((item, index) => (
-            <button
-              key={item.title}
-              onClick={() => setCurrent(index)}
-              className={`h-2.5 w-2.5 rounded-full ${
-                index === current ? "bg-indigo-300" : "bg-slate-600"
-              }`}
-              aria-label={`Go to ${item.title}`}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <p className="mb-3 font-mono text-xs uppercase tracking-[.2em] text-indigo-300">
-          Step {current + 1}
-        </p>
-        <h3 className="mb-4 text-3xl font-black text-white">{screen.title}</h3>
-        <p className="max-w-2xl text-lg leading-8 text-slate-300">
-          {screen.note}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function WireframeGrid({ wireframes }) {
-  return (
-    <div className="grid gap-5 md:grid-cols-2">
-      {wireframes.map((wireframe) => (
-        <div
-          key={wireframe.title}
-          className="border border-indigo-300/10 bg-white/[.03] p-4"
-        >
-          <div className="mb-4 max-h-[420px] overflow-auto border border-slate-700 bg-black">
-            <img
-              src={wireframe.src}
-              alt={wireframe.title}
-              className="w-full"
-            />
-          </div>
-          <h3 className="text-lg font-bold text-white">{wireframe.title}</h3>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function ProjectPage({ project, openProject, goHome }) {
-  const i = projects.findIndex((p) => p.slug === project.slug);
-  const prev = projects[(i - 1 + projects.length) % projects.length];
-  const next = projects[(i + 1) % projects.length];
-
-  return (
-    <>
-      <section className="border-b border-white/10 px-5 py-10 lg:px-12">
-        <div className="mb-5 flex justify-between gap-3">
-          <button
-            onClick={goHome}
-            className="border border-indigo-300/30 bg-indigo-400/10 px-4 py-2 text-sm font-bold text-indigo-100 transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:bg-indigo-400/20 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-300"
-          >
-            ← Back
-          </button>
-
-          <div className="flex gap-2">
-            <button
-              onClick={() => openProject(prev.slug)}
-              className="border border-slate-400 bg-black/20 px-4 py-2 text-sm font-bold text-slate-100 transition duration-200 hover:-translate-y-0.5 hover:border-indigo-300 hover:bg-indigo-400/10 hover:text-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-300"
-            >
-              Previous
-            </button>
-            <button
-              onClick={() => openProject(next.slug)}
-              className="border border-slate-400 bg-black/20 px-4 py-2 text-sm font-bold text-slate-100 transition duration-200 hover:-translate-y-0.5 hover:border-indigo-300 hover:bg-indigo-400/10 hover:text-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-300"
-            >
-              Next
-            </button>
-          </div>
-        </div>
-
-        <Window title={project.file}>
-          <div className="grid gap-8 lg:grid-cols-[1.15fr_.85fr]">
-            <div>
-              <p className="mb-4 text-indigo-300">{project.type}</p>
-              <h1 className="mb-5 text-[clamp(3rem,7vw,6rem)] font-black leading-none">
-                {project.title}
-                <span className="text-indigo-400">.</span>
-              </h1>
-              <p className="text-lg leading-8 text-slate-300">
-                {project.summary}
-              </p>
+      <section className="feature-stack" aria-live="polite">
+        <div className="feature-paper-under" />
+        <div className="feature-black-under" />
+        <div className="feature-frame">
+          <button className="feature-main feature-main-link" onClick={openActiveProject} aria-label={`Open ${activeProject.title} case study`}>
+            <img src={activeProject.image} alt="" style={{ objectFit: activeProject.imageFit || 'cover' }} />
+            <div className="feature-grain" />
+            <div className="feature-title">
+              <strong>{activeProject.title}</strong>
+              <small>{activeProject.type}</small>
             </div>
+          </button>
 
-            <div className="grid gap-3">
-              <Info label="Role" value={project.role} />
-              <Info label="Tools" value={project.tools} />
-              <Info label="Focus" value={project.focus} />
-            </div>
-          </div>
-        </Window>
-      </section>
-
-      <section className="grid gap-5 border-b border-white/10 px-5 py-10 lg:grid-cols-2 lg:px-12">
-        <Window title="goal.txt">
-          <h2 className="mb-4 text-3xl font-bold">Goal</h2>
-          <p className="leading-8 text-slate-300">{project.goal}</p>
-        </Window>
-
-        <Window title="my_part.txt">
-          <h2 className="mb-4 text-3xl font-bold">My Part</h2>
-          <p className="leading-8 text-slate-300">{project.part}</p>
-        </Window>
-      </section>
-
-      <section className="border-b border-white/10 px-5 py-10 lg:px-12">
-        <Window title="process.folder">
-          <h2 className="mb-6 text-3xl font-bold">Process</h2>
-          <div className="grid gap-4 md:grid-cols-3">
-            {project.process.map(([label, text], n) => (
-              <div
-                key={label}
-                className="group border border-indigo-300/10 bg-white/[.03] p-5 transition duration-300 hover:-translate-y-1 hover:border-indigo-300/50 hover:bg-indigo-400/[.06] hover:shadow-[0_0_28px_rgba(129,140,248,.18)]"
-              >
-                <p className="font-mono text-xs text-indigo-300">
-                  0{n + 1}
-                </p>
-                <h3 className="my-3 text-xl font-bold">{label}</h3>
-                <p className="my-3 text-xl font-bold transition group-hover:text-indigo-200">{text}</p>
-              </div>
+          <div className="project-rail">
+            {projects.map((p, i) => (
+              <button key={p.title} className={i === projectIndex ? 'rail-active' : ''} onMouseEnter={() => setProjectIndex(i)} onClick={() => { setProjectIndex(i); if (p.id === '01') setScreen('seeme'); if (p.id === '02') setScreen('ctcip'); if (p.id === '03') setScreen('bandcamp') }}>
+                <span>{p.id}</span><small>{p.title}</small>
+                <img src={p.image} alt="" style={{ objectFit: p.imageFit || 'cover' }} />
+              </button>
             ))}
           </div>
-        </Window>
+          <button className="frame-arrow frame-left" onClick={() => setProjectIndex((i) => (i - 1 + projects.length) % projects.length)}>◀</button>
+          <button className="frame-arrow frame-right" onClick={() => setProjectIndex((i) => (i + 1) % projects.length)}>▶</button>
+        </div>
+        <div className="selected-tape">SELECTED<br/>WORK</div>
+        <div className="caption-tape">2025–27</div>
       </section>
 
-      {project.deep && (
-        <section className="border-b border-white/10 px-5 py-10 lg:px-12">
-          <Window
-            title={
-              project.slug === "food-swipe"
-                ? "final_onboarding_screens.folder"
-                : project.slug === "ctcip"
-                ? "wireframes.folder"
-                : "process_notes.folder"
-            }
-          >
-            <h2 className="mb-4 text-3xl font-bold">{project.deep.title}</h2>
-            <p className="mb-6 leading-8 text-slate-300">
-              {project.deep.text}
-            </p>
+      <div className="home-footer">© 2026 KELIS CLARKE. ALL RIGHTS RESERVED.</div>
+      <ControllerHelp selectLabel="OPEN" backLabel="BACK" desktop onSelect={() => activeMenu.key === 'work' ? openActiveProject() : setScreen(activeMenu.key)} onBack={() => window.history.back()} />
+    </main>
+  )
+}
 
-            {project.slug === "food-swipe" ? (
-              <PhoneSwiper screens={foodSwipeScreens} />
-            ) : project.slug === "ctcip" ? (
-              <WireframeGrid wireframes={ctcipWireframes} />
-            ) : project.deep.textOnly ? (
-              <div className="grid gap-3 md:grid-cols-2">
-                {project.deep.items.map((v, n) => (
-                  <div
-                    key={v}
-                    className="border border-indigo-300/10 bg-white/[.03] p-5"
-                  >
-                    <p className="mb-3 font-mono text-xs text-indigo-300">
-                      0{n + 1}
-                    </p>
-                    <p className="text-sm leading-7 text-slate-300">{v}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                {project.deep.items.map((v) => (
-                  <Placeholder key={v} label={v} />
-                ))}
-              </div>
-            )}
-          </Window>
-        </section>
-      )}
+function WorkScreen({ projectIndex, setProjectIndex, onBack, onOpenProject }) {
+  const project = projects[projectIndex]
 
-      {project.recommendations && (
-        <section className="border-b border-white/10 px-5 py-10 lg:px-12">
-          <Window title="content_strategy_recommendations.folder">
-            <h2 className="mb-4 text-3xl font-bold">
-              Recommendations + why they matter.
-            </h2>
-            <p className="mb-6 max-w-4xl leading-8 text-slate-300">
-              {project.slug === "bandcamp"
-                ? "These recommendations are meant to move Bandcamp from a quiet transactional platform into a more visible cultural space for independent music discovery, without copying Spotify or SoundCloud outright."
-                : "These recommendations explain how the campaign should be measured, what each metric proves, and why the KPI framework matters to the strategy."}
-            </p>
+  return (
+    <main className="skate-shell notebook-screen">
+      <Texture />
+      <div className="top-paper-strip" />
+      <div className="menu-tab small-tab">WORK</div>
 
-            <div className="grid gap-4 lg:grid-cols-2">
-              {project.recommendations.map((rec, n) => (
-                <div
-                  key={rec.title}
-                  className="border border-indigo-300/10 bg-white/[.03] p-5"
+      <section className="notebook-wrap">
+        <div className="notebook-shadow" />
+        <div className="notebook">
+          <div className="spiral" aria-hidden="true">
+            {Array.from({ length: 16 }).map((_, i) => <i key={i} />)}
+          </div>
+
+          <div className="page left-page">
+            <div className="page-title">PROJECT INDEX</div>
+            <div className="project-list">
+              {projects.map((p, i) => (
+                <button
+                  key={p.title}
+                  onMouseEnter={() => setProjectIndex(i)}
+                  onClick={() => { setProjectIndex(i); if (p.id === '01' || p.id === '02' || p.id === '03') onOpenProject(p) }}
+                  className={i === projectIndex ? 'active-project' : ''}
                 >
-                  <p className="mb-3 font-mono text-xs text-indigo-300">
-                    0{n + 1}
-                  </p>
-                  <h3 className="mb-3 text-xl font-bold text-white">
-                    {rec.title}
-                  </h3>
-                  <p className="mb-3 text-sm leading-7 text-slate-300">
-                    <span className="font-bold text-indigo-200">Why: </span>
-                    {rec.why}
-                  </p>
-                  <p className="mb-3 text-sm leading-7 text-slate-300">
-                    <span className="font-bold text-indigo-200">
-                      Strategy:{" "}
-                    </span>
-                    {rec.strategy}
-                  </p>
-                  <p className="text-sm leading-7 text-slate-300">
-                    <span className="font-bold text-indigo-200">Payoff: </span>
-                    {rec.payoff}
-                  </p>
-                </div>
+                  <span>{p.id}</span>
+                  <strong>{p.title}</strong>
+                  <small>{p.type}</small>
+                </button>
               ))}
             </div>
-          </Window>
-        </section>
-      )}
-
-{(project.liveUrl || !project.deep) &&
-  (project.slug === "qkit" ? (
-    <section className="border-b border-white/10 px-5 py-10 lg:px-12">
-      <Window title="project_assets.folder">
-        <h2 className="mb-6 text-center text-3xl font-bold">
-          QKit Logo System
-        </h2>
-        <QKitGallery />
-      </Window>
-    </section>
-  ) : (
-    <section className="grid gap-5 border-b border-white/10 px-5 py-10 lg:grid-cols-[.95fr_1.05fr] lg:px-12">
-      <Window
-        title={project.liveUrl ? "live_site.url" : "project_assets.folder"}
-      >
-        <h2 className="mb-4 text-3xl font-bold">
-          {project.liveUrl ? "Live Site" : "Project Assets"}
-        </h2>
-
-        {project.liveUrl ? (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="block border border-indigo-300/20 bg-black p-6 hover:border-indigo-300"
-          >
-            <p className="text-[10px] uppercase tracking-[.2em] text-indigo-200/70">
-              live website
-            </p>
-            <h3 className="mt-3 text-4xl font-black">
-              Visit CTCIP.org ↗
-            </h3>
-          </a>
-        ) : (
-          <div className="grid gap-3 sm:grid-cols-2">
-            {["Final screen", "Prototype", "Key detail", "Presentation view"].map(
-              (v) => (
-                <Placeholder key={v} label={v} />
-              )
-            )}
+            <div className="work-index-note">SELECTED / 03</div>
           </div>
-        )}
-      </Window>
 
-      <Window title="reflection.note">
-        <h2 className="mb-4 text-3xl font-bold">Reflection</h2>
-        <p className="leading-8 text-slate-300">{project.focus}</p>
-      </Window>
-    </section>
-  ))}
-    </>
-  );
-}
+          <div className="page right-page" key={project.id}>
+            <div className="project-number">{project.id}</div>
+            <button className="project-photo-card project-open-card" onClick={() => onOpenProject(project)} aria-label={`Open ${project.title} case study`}>
+              <img src={project.image} alt={`${project.title} preview`} style={{ objectFit: project.imageFit || 'cover' }} />
+              <span>OPEN CASE STUDY →</span>
+            </button>
+            <h1>{project.title}</h1>
+            <p>{project.blurb}</p>
+            <div className="project-meta">{project.type}</div>
+          </div>
+        </div>
 
-function Shell({ children, activeProject, goHome }) {
-  return (
-    <main className="min-h-screen overflow-x-hidden bg-[#080b18] py-8 text-slate-100" style={{ fontFamily: "Poppins, ui-sans-serif, system-ui, sans-serif" }}>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap'); body{margin:0}.win-btn{display:grid;height:1rem;width:1rem;place-items:center;border:1px solid #020617;background:#cbd5e1;color:#020617;font-size:10px;font-weight:900}main:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:80;opacity:.13;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:100% 4px;mix-blend-mode:screen}`}</style>
-      <div className="relative z-10 mx-auto w-[94vw] max-w-[1500px] border border-slate-400 bg-slate-500 p-[3px] shadow-[0_0_60px_rgba(67,56,202,.45)]"><div className="border border-slate-950 bg-[#080b18]"><header className="sticky top-0 z-50 border-b border-slate-950 bg-slate-300 text-slate-950"><div className="flex items-center justify-between border-b border-slate-950 bg-gradient-to-r from-indigo-950 via-[#26145c] to-slate-400 px-2 py-1 text-white"><Controls /><Controls /></div><div className="flex items-center gap-2 p-3"><button onClick={goHome} className="hidden border border-slate-950 bg-slate-200 px-3 py-2 font-black sm:block">←</button><button onClick={goHome} className="min-w-0 flex-1 truncate border border-slate-950 bg-white px-4 py-2 text-left font-black">{activeProject ? `Kelis Clarke / work / ${activeProject.file}` : "Kelis Clarke"}</button><span className="text-xl">☆</span><span className="text-xl">≡</span></div><nav className="flex gap-5 overflow-x-auto border-t border-slate-950 bg-[#090b16] px-4 py-3 text-sm text-slate-200"><button onClick={goHome} className="text-indigo-300">Work</button><a href="#about">About</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav></header>{children}<footer className="flex justify-between border-t border-slate-950 bg-slate-300 px-5 py-4 text-xs text-slate-950"><span>© 2026 Kelis Clarke</span><span>in · mail</span></footer></div></div>
+      </section>
+
+      <img className="work-edge-ink work-edge-ink-top" src="/assets/brush-ink-dry.png" alt="" />
+      <img className="work-edge-ink work-edge-ink-bottom" src="/assets/brush-ink-wet.png" alt="" />
+      <div className="work-grid-patch" />
+      <div className="desk-tape tape-a" />
+      <div className="desk-tape tape-b" />
+      <div className="loose-note">KELIS / 2026<br/>SELECTED WORK</div>
+      <ControllerHelp onBack={onBack} backLabel="BACK" selectLabel="OPEN" onSelect={() => onOpenProject(project)} />
     </main>
-  );
+  )
 }
 
-export default function PortfolioStarter() {
-  const [activeSlug, setActiveSlug] = useState(null);
-  const activeProject = projects.find((p) => p.slug === activeSlug) || null;
-  const openProject = (slug) => { setActiveSlug(slug); window.scrollTo({ top: 0, behavior: "smooth" }); };
-  const goHome = () => { setActiveSlug(null); };
-  return <Shell activeProject={activeProject} goHome={goHome}>{activeProject ? <ProjectPage project={activeProject} openProject={openProject} goHome={goHome} /> : <Home openProject={openProject} />}</Shell>;
+
+function SeeMeCaseStudy({ onBack }) {
+  const meta = [
+    ['CONTEXT', 'Class project / digital publication'],
+    ['ROLE', 'Designer / individual'],
+    ['DURATION', '1 month'],
+    ['TOOLS', 'Figma'],
+  ]
+
+  return <main className="case-study-shell seeme-case">
+    <Texture />
+    <div className="case-study-topbar">
+      <button onClick={onBack}>← WORK</button>
+      <span>01 / SEE ME</span>
+    </div>
+
+    <div className="case-study-stack">
+      <section className="notebook-spread case-hero-spread">
+        <div className="case-spiral" aria-hidden="true" />
+        <div className="case-page case-page-left">
+          <span className="case-index">01 /</span>
+          <h1>SeeMe</h1>
+          <div className="marker-label">Interactive Media Discovery Platform</div>
+          <p className="case-lede">SeeMe reimagines how people discover and engage with media. Instead of traditional lists and grids, it invites users to explore music, movies, games, books, and fashion through familiar physical interactions that make discovery feel immersive and personal.</p>
+          <div className="case-meta-grid">{meta.map(([a,b]) => <div key={a}><b>{a}</b><span>{b}</span></div>)}</div>
+        </div>
+        <div className="case-page case-page-right hero-visual-page">
+          <div className="physical-piece hero-piece">
+            <span className="tape-strip tape-strip-wide" aria-hidden="true" />
+            <img className="hero-mockup" src="/assets/seeme-laptop-mockup.png" alt="SeeMe landing page shown on a laptop mockup" />
+          </div>
+        </div>
+      </section>
+
+      <section className="notebook-spread airy-spread origin-spread">
+        <div className="case-spiral" aria-hidden="true" />
+        <div className="case-page case-page-left">
+          <span className="case-index">02 /</span>
+          <h2><span className="highlight">Where It Started</span></h2>
+          <p>The assignment was to create a digital publication, and I've always liked taking an assignment a little outside the box so it feels different and actually sticks with people.</p>
+          <p>For SeeMe, I wanted to recreate parts of a physical media experience digitally. I built it as a side-scroller and used familiar physical interactions to make discovery feel more tactile, playful, and intentional.</p>
+        </div>
+        <div className="case-page case-page-right inspiration-page">
+          <span className="case-badge badge-blue">Visual Inspiration</span>
+          <div className="apple-inspo-collage">
+            <figure className="apple-ref apple-ref-ufo"><span className="tape-strip tape-strip-small" aria-hidden="true"/><img src="/assets/apple-ufo.png" alt="Vintage Apple Mac OS 8 advertisement"/></figure>
+            <figure className="apple-ref apple-ref-carrots"><span className="tape-strip tape-strip-small" aria-hidden="true"/><img src="/assets/apple-carrots.png" alt="Vintage Apples make great carrots advertisement"/></figure>
+            <figure className="apple-ref apple-ref-explore"><span className="tape-strip tape-strip-small" aria-hidden="true"/><img src="/assets/apple-explore.png" alt="Explore your mind Apple Macintosh advertisement"/></figure>
+          </div>
+        </div>
+      </section>
+
+      <section className="notebook-spread airy-spread structure-spread">
+        <div className="case-spiral" aria-hidden="true" />
+        <div className="case-page case-page-left">
+          <span className="case-index">03 /</span>
+          <h2><span className="highlight">The Structure</span></h2>
+          <span className="case-badge badge-yellow">Five Categories</span>
+          <p>SeeMe is organized into five main categories. Each one keeps the publication connected, but gives discovery its own environment inspired by how that media is traditionally experienced.</p>
+        </div>
+        <div className="case-page case-page-right structure-visual-page">
+          <div className="physical-piece structure-piece">
+            <span className="tape-strip tape-strip-corner" aria-hidden="true" />
+            <img className="structure-image" src="/assets/seeme-structure.png" alt="SeeMe category hub for Music, Games, Books, Fashion, and Shows and Movies" />
+          </div>
+        </div>
+      </section>
+
+      <section className="notebook-spread iteration-spread">
+        <div className="case-spiral" aria-hidden="true" />
+        <div className="case-page case-page-left">
+          <span className="case-index">04 /</span>
+          <h2><span className="highlight">Iterations</span></h2>
+          <span className="case-badge badge-red">Design Iterations</span>
+          <p>The core ideas stayed the same, but the presentation evolved into something more immersive and atmospheric.</p>
+          <div className="iteration-pair">
+            <figure className="pasted-shot old-shot"><img src="/assets/seeme-old-music.png" alt="Earlier SeeMe Music layout using CDs"/><figcaption>EARLY / CD LAYOUT</figcaption></figure>
+            <div className="iteration-arrow">↓</div>
+            <figure className="pasted-shot final-shot"><img src="/assets/seeme-final-music.png" alt="Final SeeMe Music record store environment"/><figcaption>FINAL / RECORD STORE</figcaption></figure>
+          </div>
+        </div>
+        <div className="case-page case-page-right">
+          <div className="iteration-pair iteration-tv">
+            <figure className="pasted-shot old-shot"><img src="/assets/seeme-old-tv.png" alt="Earlier Shows and Movies wall of televisions"/><figcaption>EARLY / TV WALL</figcaption></figure>
+            <div className="iteration-arrow">↓</div>
+            <figure className="pasted-shot final-shot"><img src="/assets/seeme-final-tv.png" alt="Final Shows and Movies focused television environment"/><figcaption>FINAL / FOCUSED TV</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section className="notebook-spread final-experience-spread">
+        <div className="case-spiral" aria-hidden="true" />
+        <div className="case-page case-page-left final-copy">
+          <span className="case-index">05 /</span>
+          <h2><span className="highlight">The Final Experience</span></h2>
+          <span className="case-badge badge-green">Category Browsing</span>
+          <p>Each category became its own browsing environment. Instead of forcing everything into one visual system, the interaction changes with the kind of media being explored.</p>
+        </div>
+        <div className="case-page case-page-right final-collage">
+          <figure className="final-card music-card">
+            <span className="tape-strip tape-strip-small final-card-tape" aria-hidden="true" />
+            <span>MUSIC</span><img src="/assets/seeme-final-music.png" alt="Final Music category"/>
+          </figure>
+          <figure className="final-card shows-card">
+            <span className="tape-strip tape-strip-small final-card-tape" aria-hidden="true" />
+            <span>SHOWS + MOVIES</span><img src="/assets/seeme-final-tv.png" alt="Final Shows and Movies category"/>
+          </figure>
+          <figure className="final-card games-card">
+            <span className="tape-strip tape-strip-small final-card-tape" aria-hidden="true" />
+            <span>GAMES</span><img src="/assets/seeme-games.png" alt="Final Games category"/>
+          </figure>
+        </div>
+      </section>
+
+      <section className="notebook-spread publication-spread">
+        <div className="case-spiral" aria-hidden="true" />
+        <div className="case-page case-page-left publication-copy">
+          <span className="case-index">06 /</span>
+          <h2><span className="highlight">It's Still a Publication</span></h2>
+          <span className="case-badge badge-blue">Editorial View</span>
+          <p>The interactive environments are for discovery. Once you choose something you actually want to read about, SeeMe shifts back into a familiar online article format so the content is easy to read.</p>
+          <p>For example, selecting beabadoobee's vinyl opens the Beatopia feature. From there, you can read the write-up normally and then return to the more physical browsing experience.</p>
+        </div>
+        <div className="case-page case-page-right publication-visual publication-beatopia">
+          <figure className="beatopia-paper">
+            <span className="tape-strip tape-strip-wide beatopia-tape" aria-hidden="true" />
+            <img src="/assets/seeme-beatopia-article.png" alt="SeeMe Beatopia editorial article page" />
+            <figcaption>BEATOPIA / MUSIC FEATURE</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section className="notebook-spread mobile-spread">
+        <div className="case-spiral" aria-hidden="true" />
+        <div className="case-page case-page-left mobile-copy">
+          <span className="case-index">07 /</span>
+          <h2><span className="highlight">Across Screens</span></h2>
+          <span className="case-badge badge-yellow">Responsive Adaptation</span>
+          <p>The desktop experience gets to lean into the side-scrolling, physical-media idea. Mobile was harder because so much of SeeMe depends on having enough screen space to actually explore.</p>
+          <p>I didn't want to just shrink the desktop version down. I kept the same editorial identity and tried to hold onto the interactive, playful feeling, but made browsing more direct so it still worked on a smaller screen. It became a different version of the same idea instead of a copy of the desktop experience.</p>
+        </div>
+        <div className="case-page case-page-right device-scrapbook-page">
+          <div className="physical-piece laptop-sticker">
+            <span className="tape-strip tape-strip-wide" aria-hidden="true" />
+            <img src="/assets/seeme-laptop-mockup.png" alt="SeeMe desktop experience shown on a laptop" />
+          </div>
+          <div className="physical-piece phone-sticker">
+            <img src="/assets/seeme-phone-mockup.png" alt="SeeMe article page shown in a phone mockup" />
+          </div>
+          <div className="physical-piece mobile-feed-piece mobile-feed-right">
+            <span className="tape-strip tape-strip-small" aria-hidden="true" />
+            <img className="mobile-feed-card" src="/assets/seeme-mobile-feed.png" alt="SeeMe mobile Music feed" />
+          </div>
+        </div>
+      </section>
+
+      <section className="notebook-spread walkthrough-spread">
+        <div className="case-spiral" aria-hidden="true" />
+        <div className="case-page case-page-left walkthrough-copy">
+          <span className="case-index">08 /</span>
+          <h2><span className="highlight">See For Yourself</span></h2>
+          <p>The walkthrough shows how the side-scrolling publication moves from the landing page into category discovery and the editorial experience.</p>
+        </div>
+        <div className="case-page case-page-right video-page">
+          <div className="video-label">Product Walkthrough</div>
+          <div className="video-player-shell"><div className="video-player-top"><i/><i/><i/><span>SEE ME / DEMO</span></div><div className="video-frame"><iframe width="560" height="315" src="https://www.youtube.com/embed/roDoJ6nWjSo?si=CMkXVLrH8ScFwS1i" title="SeeMe product walkthrough" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen /></div><div className="video-player-bottom"><span>◀</span><span className="fake-track"><i/></span><span>▶</span></div></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+}
+
+
+function CTCIPCaseStudy({ onBack }) {
+  const meta = [['PROJECT','CTCIP.org'],['ROLE','Web Design + Implementation'],['TOOLS','Figma / WordPress / Beaver Builder'],['TYPE','Website redesign']]
+  return <main className="case-study-shell ctcip-case">
+    <BackToTop />
+    <div className="case-study-topbar">
+      <button className="case-work-button ctcip-work-button" onClick={onBack}>← WORK</button>
+      <span>02 / CTCIP</span>
+    </div>
+    <div className="ctcip-stack">
+      <section className="ctcip-sheet ctcip-hero">
+        <div className="ctcip-hero-copy">
+          <span className="case-index">01 /</span>
+          <h1>CTCIP.org</h1>
+          <span className="case-badge badge-green">Web Design + Redesign</span>
+          <p>CTCIP was a website redesign focused on reorganizing key pages and translating Figma wireframes into the existing WordPress site.</p>
+          <div className="ctcip-meta">{meta.map(([a,b]) => <div key={a}><b>{a}</b><span>{b}</span></div>)}</div>
+        </div>
+        <div className="ctcip-hero-visual">
+          <div className="ctcip-browser"><div className="browser-bar"><i/><i/><i/><span>ctcip.org</span></div><img src="/assets/ctcip-cover.png" alt="CTCIP website homepage" /></div>
+          <span className="case-badge badge-green ctcip-live-badge">LIVE SITE / WORDPRESS</span>
+        </div>
+      </section>
+
+      <section className="ctcip-sheet ctcip-brief">
+        <div className="ctcip-section-copy">
+          <span className="case-index">02 /</span><h2>Starting With Structure</h2>
+          <span className="case-badge badge-yellow">Figma Wireframes</span>
+          <p>I used the wireframes to figure out page hierarchy, navigation, and how the main content should be organized before bringing the redesign into WordPress.</p>
+        </div>
+        <div className="wireframe-board">
+          <figure className="wire wire-home"><img src="/assets/ctcip-wire-home.png" alt="CTCIP homepage Figma wireframe"/><figcaption>HOME / FIGMA</figcaption></figure>
+          <figure className="wire wire-news"><img src="/assets/ctcip-wire-news.png" alt="CTCIP news page Figma wireframe"/><figcaption>CIP IN THE NEWS</figcaption></figure>
+        </div>
+      </section>
+
+      <section className="ctcip-sheet ctcip-map">
+        <div className="ctcip-map-head"><span className="case-index">03 /</span><h2>Mapping the Site</h2><span className="case-badge badge-blue">Content System</span></div>
+        <div className="ctcip-map-grid">
+          <div><b>HOME</b><span>Mission, approach, collaborators</span></div>
+          <div><b>ABOUT US</b><span>Who we are, history, team</span></div>
+          <div><b>CIP IN THE NEWS</b><span>Featured story + recent articles</span></div>
+          <div><b>PROGRAMS + RESOURCES</b><span>Scholarships, funded work, useful information</span></div>
+        </div>
+      </section>
+
+      <section className="ctcip-sheet ctcip-build">
+        <div className="ctcip-section-copy">
+          <span className="case-index">04 /</span><h2>From Figma to WordPress</h2>
+          <span className="case-badge badge-red">Build + Adapt</span>
+          <p>I built the redesigned pages in WordPress using Beaver Builder, using the Figma wireframes as the starting point for the page structure.</p>
+          <p>From there, I adjusted the layouts around the site's existing content and structure, along with feedback from the team and client.</p>
+        </div>
+        <div className="ctcip-before-after">
+          <div className="ba-card plan"><span>01 / PLAN</span><img src="/assets/ctcip-wire-news.png" alt="CIP in the News recent articles wireframe"/></div>
+          <div className="ba-arrow">→</div>
+          <div className="ba-card live"><span>02 / LIVE</span><img src="/assets/ctcip-live-news.png" alt="Implemented CTCIP CIP in the News page"/></div>
+        </div>
+      </section>
+
+      <section className="ctcip-sheet ctcip-pages">
+        <div className="ctcip-pages-head"><span className="case-index">05 /</span><h2>Designing for Real Content</h2><p>The redesign covered different kinds of content across the site, including organizational information, news, programs, and resources.</p></div>
+        <div className="ctcip-page-papers">
+          <figure><img src="/assets/ctcip-wire-about.png" alt="About page wireframe"/><figcaption>ABOUT / LONG-FORM INFO</figcaption></figure>
+          <figure><img src="/assets/ctcip-wire-programs.png" alt="Programs page wireframe"/><figcaption>PROGRAMS / REPEATABLE CONTENT</figcaption></figure>
+          <figure><img src="/assets/ctcip-wire-home.png" alt="Homepage wireframe"/><figcaption>HOME / ORGANIZATIONAL CONTENT</figcaption></figure>
+        </div>
+      </section>
+
+      <section className="ctcip-sheet ctcip-result">
+        <div className="ctcip-result-copy"><span className="case-index">06 /</span><h2>The Result</h2><span className="case-badge badge-green">Live Website</span><p>The final redesign brought the Figma structure into the existing WordPress site and gave CTCIP an updated set of pages built around its real content.</p><p>The project gave me experience taking wireframes into a live CMS and adapting the design as I built it.</p><a href="https://ctcip.org/" target="_blank" rel="noreferrer" className="ctcip-live-link"><span className="ctcip-live-icon">↗</span><span><b>VISIT CTCIP.ORG</b><small>View the live website</small></span></a></div>
+        <div className="ctcip-result-visual"><div className="ctcip-browser result-browser"><div className="browser-bar"><i/><i/><i/><span>ctcip.org</span></div><img src="/assets/ctcip-cover.png" alt="CTCIP live website" /></div></div>
+      </section>
+    </div>
+  </main>
+}
+
+
+function BandcampCaseStudy({ onBack }) {
+  return <main className="case-study-shell bandcamp-case">
+    <BackToTop />
+    <div className="case-study-topbar bandcamp-topbar">
+      <button className="case-work-button" onClick={onBack}>← WORK</button>
+      <span>03 / BANDCAMP</span>
+    </div>
+
+    <div className="bandcamp-stack">
+      <section className="bandcamp-sheet bandcamp-hero">
+        <div className="bandcamp-hero-copy">
+          <span className="case-index">01 /</span>
+          <span className="case-badge badge-blue bandcamp-kicker">Platform Audit / Content Strategy</span>
+          <h1>Bandcamp<br/>Digital Audit</h1>
+          <p><strong>A short digital audit exploring how Bandcamp could become more culturally visible while keeping its independent, artist-first identity.</strong></p>
+          <div className="bandcamp-meta">
+            <div><span className="bandcamp-meta-label">Role</span><span>Digital inventory<br/>Competitive analysis<br/>Strategic recommendations</span></div>
+            <div><span className="bandcamp-meta-label">Tools</span><span>Research<br/>Content strategy<br/>Presentation writing</span></div>
+          </div>
+          <div className="bandcamp-focus"><span className="bandcamp-meta-label">Focus</span><p>Where Bandcamp's digital presence supports its artist-first positioning, and where discovery, engagement, and cultural relevance start to fall short.</p></div>
+        </div>
+        <div className="bandcamp-hero-art">
+          <div className="bandcamp-logo-paper"><img src="/assets/bandcamp-logo.png" alt="Bandcamp logo"/></div>
+          <span className="tape-strip bandcamp-paper-tape tape-one" aria-hidden="true"/><span className="tape-strip bandcamp-paper-tape tape-two" aria-hidden="true"/>
+        </div>
+      </section>
+
+      <section className="bandcamp-sheet bandcamp-process bandcamp-observations">
+        <div className="bandcamp-section-head"><span className="case-index">02 / THE AUDIT</span><h2>Looking at the Platform</h2></div>
+        <div className="bandcamp-process-grid">
+          <article><span>01 / PLATFORM</span><h3>Functional, but largely transactional.</h3><p>Bandcamp makes it easy to buy music and directly support artists, but the experience gives new users fewer reasons to explore beyond what they came for.</p><small>CLEAR NAVIGATION · DIRECT-TO-FAN · LIMITED DISCOVERY</small></article>
+          <article><span>02 / PRESENCE</span><h3>Artist-focused, but easy to scroll past.</h3><p>Its social presence consistently supports artists, but the content is more informative than participatory, leaving less room for conversation and cultural momentum.</p><small>ARTIST-LED · LOW INTERACTION · LIMITED SHORT-FORM</small></article>
+          <article><span>03 / POSITION</span><h3>A strong mission without an equally strong shorthand.</h3><p>Spotify is closely associated with personalization and Wrapped. SoundCloud built an identity around emerging discovery. Bandcamp's differentiator isn't communicated as immediately.</p><small>ARTIST-FIRST · INDEPENDENT · UNCLEAR CULTURAL HOOK</small></article>
+        </div>
+      </section>
+
+      <section className="bandcamp-sheet bandcamp-finding">
+        <div className="finding-statement"><span className="case-index">03 / THE QUESTION</span><h2>You found<br/>Bandcamp.<br/><mark>Why choose it?</mark></h2><p>The platform already has something its competitors don't: a reputation for directly supporting independent artists. The challenge is turning that value into an experience and identity that gives listeners a reason to actively choose Bandcamp.</p></div>
+        <div className="bandcamp-strengths"><div><b>DIRECT SUPPORT</b><span>Fans can financially support artists more directly.</span></div><div><b>INDEPENDENT CREDIBILITY</b><span>Existing trust across indie and underground music communities.</span></div><div><b>DISCOVERY POTENTIAL</b><span>A catalog and artist community that could support a stronger discovery identity.</span></div></div>
+      </section>
+
+      <section className="bandcamp-sheet bandcamp-recs bandcamp-culture">
+        <div className="bandcamp-section-head bandcamp-recs-head"><span className="case-index">04 / STRATEGY</span><h2>Make the Culture More Visible</h2></div>
+        <div className="bandcamp-culture-layout">
+          <div className="bandcamp-taped-photo concert-photo"><span className="tape-strip bandcamp-photo-tape bandcamp-photo-tape-a" aria-hidden="true"/><span className="tape-strip bandcamp-photo-tape bandcamp-photo-tape-b" aria-hidden="true"/><img src="/assets/bandcamp-live-stock.png" alt="Live band performing on stage"/><small>LIVE MUSIC / ARTIST CULTURE</small></div>
+          <div className="bandcamp-rec-list">
+            <article><span className="case-badge badge-red">01</span><div><h3>Poster Artist Program</h3><b>Give discovery a face.</b><p>Spotlight one emerging artist each quarter through homepage placement, editorial, social storytelling, and original content.</p><small>Creates a recurring cultural anchor while showing artists that Bandcamp can contribute to growth, not just sales.</small></div></article>
+            <article><span className="case-badge badge-blue">02</span><div><h3>Participatory Discovery</h3><b>Give fans something to do.</b><p>Build song challenges, remix prompts, genre discovery weeks, and community competitions around Bandcamp artists.</p><small>Discovery becomes an activity instead of something that ends after a purchase.</small></div></article>
+            <article><span className="case-badge badge-yellow">03</span><div><h3>Artist-Led Short Form</h3><b>Bring the story behind the music forward.</b><p>Use short-form content for song origins, studio moments, artist introductions, live clips, and behind-the-work storytelling.</p><small>Translates Bandcamp's artist-first identity into formats people already use to discover music.</small></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section className="bandcamp-sheet bandcamp-communities">
+        <div className="bandcamp-section-head"><span className="case-index">05 / EXTENSION</span><h2>Meet Listeners Where They Are</h2><p>Not every recommendation had to live inside Bandcamp. Some of the strongest opportunities were about connecting the platform to communities that already care about independent discovery.</p></div>
+        <div className="community-layout">
+          <div className="bandcamp-taped-photo radio-photo"><span className="tape-strip bandcamp-photo-tape bandcamp-photo-tape-a" aria-hidden="true"/><span className="tape-strip bandcamp-photo-tape bandcamp-photo-tape-b" aria-hidden="true"/><img src="/assets/campus-radio.png" alt="Campus radio station studio"/><small>CAMPUS RADIO / COMMUNITY DISCOVERY</small></div>
+          <div className="community-copy">
+            <article><span className="case-badge badge-green">COLLEGE RADIO</span><h3>Put Bandcamp inside existing discovery ecosystems.</h3><p>Partner with student-run stations for Bandcamp-curated shows, artist spotlights, live sessions, and playlist crossovers.</p><small>UNDERGROUND · LOCAL · DISCOVERY</small></article>
+            <article><span className="case-badge badge-blue">GLOBAL + FANDOM</span><h3>Extend direct-to-fan thinking beyond the platform.</h3><p>Explore collaborations around physical releases, collectibles, artist storefronts, and highly engaged international music communities.</p><small>PHYSICAL MEDIA · FANDOM · DIRECT-TO-FAN</small></article>
+          </div>
+        </div>
+        <div className="bandcamp-throughline"><b>THE THROUGHLINE</b><p>Build on what already makes Bandcamp valuable to artists while creating more reasons for listeners to discover, participate, and identify with the platform.</p></div>
+        <a className="bandcamp-pdf-cta" href="/assets/bandcamp-digital-audit-kelis-clarke.pdf" target="_blank" rel="noreferrer"><span className="pdf-btn-icon">↗</span><span><b>READ THE FULL AUDIT</b><small>8-page Digital Media Audit · PDF</small></span></a>
+      </section>
+    </div>
+  </main>
+}
+
+function PaperScreen({ kind, onBack }) {
+  if (kind === 'about') return <AboutScreen onBack={onBack} />
+  if (kind === 'resume') return <ResumeScreen onBack={onBack} />
+  return <ContactScreen onBack={onBack} />
+}
+
+function InteriorChrome({ label, code }) {
+  return <>
+    <img className="interior-top-ink" src="/assets/brush-ink-dry.png" alt="" />
+    <div className="interior-paper-band" />
+    <div className="interior-label">{label}</div>
+    <div className="interior-code">{code} / KELIS / 2026</div>
+  </>
+}
+
+function AboutScreen({ onBack }) {
+  return <main className="skate-shell interior-screen about-world">
+    <Texture /><InteriorChrome label="ABOUT" code="02" />
+    <img className="about-smudge" src="/assets/bottom-left-smudge.png" alt="" />
+    <div className="about-grid-scrap" />
+    <section className="about-photo-stack">
+      <div className="about-black-back" />
+      <figure className="about-photo"><img src="/assets/pond-reflection.png" alt="" /><figcaption>FIELD NOTE / 02</figcaption></figure>
+      <div className="about-tape about-tape-a"/><div className="about-tape about-tape-b"/>
+    </section>
+    <section className="about-copy-sheet">
+      <span className="sheet-kicker about-badge">CREATIVE + PROJECT COORDINATION</span>
+      <h1>KELIS<br/>CLARKE</h1>
+      <p>I’ve always had my hand in a little bit of everything. My background spans web, design, branding, content, and digital strategy, but I’ve realized I work best somewhere in the middle of all of it. I like keeping projects moving, organizing the details, and being the person who can understand the technical side and explain it clearly to a creative team, client, or partner.</p>
+      <p>Outside of work, I really enjoy making music, playing video games, and recently I’ve started getting into photography.</p>
+      <div className="about-tags"><span>PROJECT COORDINATION</span><span>CREATIVE</span><span>WEB</span><span>DIGITAL</span><span>AI TOOLS</span></div>
+    </section>
+    <img className="about-edge-ink" src="/assets/brush-ink-dry.png" alt="" />
+    <div className="about-number-stamp">02 / PROFILE</div>
+    <div className="interior-footer">© 2026 KELIS CLARKE. PROFILE / 02</div>
+    <ControllerHelp onBack={onBack} backLabel="BACK" />
+  </main>
+}
+
+function ResumeScreen({ onBack }) {
+  return <main className="skate-shell interior-screen resume-world resume-simple-world">
+    <Texture /><InteriorChrome label="RESUME" code="03" />
+    <img className="resume-smudge" src="/assets/bottom-left-smudge.png" alt="" />
+    <img className="resume-top-swipe" src="/assets/brush-ink-dry.png" alt="" />
+    <div className="resume-grid-patch" />
+
+    <section className="resume-pdf-stage" aria-label="Kelis Clarke resume">
+      <div className="resume-pdf-shadow" aria-hidden="true" />
+      <div className="resume-pdf-paper">
+        <iframe
+          className="resume-pdf-frame"
+          src="/assets/kelis-clarke-resume.pdf#view=FitH&toolbar=0&navpanes=0"
+          title="Kelis Clarke Resume"
+        />
+      </div>
+      <div className="resume-pdf-tape" aria-hidden="true" />
+    </section>
+
+    <a className="resume-download-button" href="/assets/kelis-clarke-resume.pdf" download>
+      <span className="resume-download-icon" aria-hidden="true">↓</span>
+      <span>DOWNLOAD PDF</span>
+    </a>
+
+    <div className="interior-footer">© 2026 KELIS CLARKE. RESUME / 03</div>
+    <ControllerHelp onBack={onBack} backLabel="BACK" />
+  </main>
+}
+
+function ContactScreen({ onBack }) {
+  return <main className="skate-shell interior-screen contact-notebook-world">
+    <Texture /><InteriorChrome label="CONTACT" code="04" />
+    <img className="contact-notebook-smudge" src="/assets/bottom-left-smudge.png" alt="" />
+    <img className="contact-notebook-ink" src="/assets/brush-ink-dry.png" alt="" />
+    <div className="contact-notebook-grid" />
+
+    <section className="contact-notebook-wrap">
+      <div className="contact-notebook-back" />
+      <div className="contact-notebook-page">
+        <div className="contact-punched-edge" aria-hidden="true">
+          {Array.from({ length: 11 }).map((_, i) => <i key={i} />)}
+        </div>
+        <div className="contact-page-tape" aria-hidden="true" />
+        <span className="contact-page-index">04 / CONTACT</span>
+        <h1>CONTACT</h1>
+        <div className="contact-green-underline" />
+
+        <nav className="contact-notebook-links" aria-label="Contact links">
+          <a href="mailto:kelisclarke1@yahoo.com">
+            <span className="contact-icon envelope-icon" aria-hidden="true">✉</span>
+            <span className="contact-link-copy"><small>EMAIL</small><strong>kelisclarke1@yahoo.com</strong></span>
+            <i aria-hidden="true">→</i>
+          </a>
+          <a href="https://www.linkedin.com/in/kelis-c" target="_blank" rel="noreferrer">
+            <span className="contact-icon linkedin-icon" aria-hidden="true">in</span>
+            <span className="contact-link-copy"><small>LINKEDIN</small><strong>linkedin.com/in/kelis-c</strong></span>
+            <i aria-hidden="true">→</i>
+          </a>
+        </nav>
+
+      </div>
+      <div className="contact-registration">+</div>
+    </section>
+
+    <div className="interior-footer">© 2026 KELIS CLARKE. CONTACT / 04</div>
+    <ControllerHelp onBack={onBack} backLabel="BACK" />
+  </main>
+}
+
+function BackToTop() {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const update = () => setVisible(window.scrollY > 620)
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    return () => window.removeEventListener('scroll', update)
+  }, [])
+
+  return (
+    <button
+      type="button"
+      className={`mobile-back-to-top ${visible ? 'is-visible' : ''}`}
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      aria-label="Back to top"
+    >
+      ↑
+    </button>
+  )
+}
+
+function Texture() {
+  return (
+    <>
+      <div className="base-grain" aria-hidden="true" />
+      <div className="paper-grid" aria-hidden="true" />
+      <div className="corner-scrap scrap-one" aria-hidden="true" />
+      <div className="corner-scrap scrap-two" aria-hidden="true" />
+      <BackToTop />
+    </>
+  )
+}
+
+function ControllerHelp({ onBack, onSelect, selectLabel = 'SELECT', backLabel = 'BACK', desktop = false }) {
+  return (
+    <div className={`controller-strip ${desktop ? 'desktop-prompt' : ''} ${onSelect ? 'has-select' : 'back-only'}`}>
+      {onSelect && <>
+        <button className="control-action control-primary" onClick={onSelect} aria-label={selectLabel}>
+          <b className="a-btn mouse-btn" aria-hidden="true">
+            <img className="mouse-control-icon" src="/assets/mouse-icon-clean.png" alt="" />
+          </b>
+          <span className="control-label">{selectLabel}</span>
+        </button>
+        <span className="prompt-divider" />
+      </>}
+      <button className="control-action control-back" onClick={onBack} disabled={!onBack} aria-label={backLabel}>
+        <b className="b-btn" aria-hidden="true">×</b>
+        <span className="control-label">{backLabel}</span>
+      </button>
+    </div>
+  )
 }
